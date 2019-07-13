@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Introduction</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">GAP</h1>
+
+<p><b>G</b>enome <b>A</b>nnotation <b>P</b>aser (<a href="https://github.com/lipan6461188/GAP" style="text-decoration:none;color:blue;">GAP</a>) is a tool for parsing Gencode/Ensembl GTF and NCBI GFF3 genome annotation files.</p>
+
+<h2 id="toc_1">Installation</h2>
+
+<h3 id="toc_2">Prerequisites</h3>
+
+<p>Python 2.7</p>
+
+<p>pysam: <a href="https://pypi.org/project/pysam/">https://pypi.org/project/pysam/</a></p>
+
+<h3 id="toc_3">Installing</h3>
+
+<p>Add these lines to your <code>~/.bash_profile</code>, <code>[GAP]</code> is the <b>absolute</b> path of GAP.</p>
+
+<div><pre class="line-numbers"><code class="language-bash">export PYTHONPATH=[GAP]:$PYTHONPATH
+export PATH=[GAP]:$PATH</code></pre></div>
+
+<h2 id="toc_4">Main functions</h2>
+
+<ul>
+<li>Fetch transcritome file from genome with GFF/GTF annotation;</li>
+<li>Conversion between three coordinate systems: Gene/Transcript/Genome;</li>
+<li>Get transcription information (chrID, gene type, length, CDS region&hellip;) given a transcription ID or gene name;</li>
+<li>Show mRNA structure</li>
+<li>&hellip;</li>
+</ul>
+
+<h2 id="toc_5">Download data</h2>
+
+<blockquote>
+<p>Gencode GTF/Genome: <a href="https://www.gencodegenes.org">https://www.gencodegenes.org</a> <br>
+Enesembl GTF/Genome: <a href="https://ensembl.org/info/data/ftp/index.html">https://ensembl.org/info/data/ftp/index.html</a> <br>
+NCBI GFF3/Genome: <a href="ftp://ftp.ncbi.nlm.nih.gov/genomes">ftp://ftp.ncbi.nlm.nih.gov/genomes</a></p>
+</blockquote>
+
+<h2 id="toc_6">Quick start</h2>
+
+<h4 id="toc_7">1. Convert a GTF file to *.genomeCoor.bed file</h4>
+
+<div><pre class="line-numbers"><code class="language-shell">parseGTF.py -g chicken.gtf -o chicken -s ensembl --genome chicken_ensembl.fa</code></pre></div>
+
+<p>The genome file <code>--genome chicken_ensembl.fa</code> is optional.</p>
+
+<p>It will produce three files: </p>
+
+<ul>
+<li><code>chicken.genomeCoor.bed</code>    &ndash; A simple version of the genome-based annotation file</li>
+<li><code>chicken.transCoor.bed</code>       &ndash; A simple version of the transcript-based annotation file</li>
+<li><code>chicken_transcriptome.fa</code>  &ndash; Transcriptome file</li>
+</ul>
+
+<h4 id="toc_8">2. Read the annotation</h4>
+
+<div><pre class="line-numbers"><code class="language-python">import GAP
+chicken_parser = GAP.init(&quot;chicken.genomeCoor.bed&quot;, &quot;chicken_transcriptome.fa&quot;)</code></pre></div>
+
+<p>Another way is to read the GTF file directly.</p>
+
+<div><pre class="line-numbers"><code class="language-python">chicken_parser = GAP.initGTF(&quot;chicken.gtf&quot;, genomeFile=&quot;chicken_ensembl.fa&quot;, source=&#39;Ensembl&#39;)</code></pre></div>
+
+<h4 id="toc_9">3. Get all mRNAs</h4>
+
+<div><pre class="line-numbers"><code class="language-python">mRNAs = chicken_parser.getmRNATransList(); print len(mRNAs)
+# 30252
+print mRNAs[:5]
+# [&#39;ENSGALT00000005443&#39;, &#39;ENSGALT00000005447&#39;, &#39;ENSGALT00000013873&#39;, &#39;ENSGALT00000001353&#39;, &#39;ENSGALT00000001352&#39;]</code></pre></div>
+
+<p>It shows that chicken has 30252 mRNA transcripts.</p>
+
+<h4 id="toc_10">4. Get GAPDH gene id and transcripts</h4>
+
+<div><pre class="line-numbers"><code class="language-python">GAPDH_gID = chicken_parser.getGeneByGeneName(&quot;GAPDH&quot;); print GAPDH_gID
+# ENSGALG00000014442
+
+GAPDH_transcripts = chicken_parser.getTransByGeneID(GAPDH_gID); print GAPDH_transcripts
+# [&#39;ENSGALT00000046744&#39;, &#39;ENSGALT00000086833&#39;, &#39;ENSGALT00000023323&#39;, &#39;ENSGALT00000086032&#39;, &#39;ENSGALT00000074237&#39;, &#39;ENSGALT00000090208&#39;, &#39;ENSGALT00000051222&#39;, &#39;ENSGALT00000054080&#39;, &#39;ENSGALT00000089752&#39;, &#39;ENSGALT00000085687&#39;]
+
+## Print all transcript gene type and length
+for tid in GAPDH_transcripts:
+    trans_feature = chicken_parser.getTransFeature(tid)
+    print tid, trans_feature[&#39;gene_type&#39;], trans_feature[&#39;trans_len&#39;]
+
+# ENSGALT00000046744 protein_coding 1076
+# ENSGALT00000086833 protein_coding 1122
+# ENSGALT00000023323 protein_coding 1288
+# ENSGALT00000086032 protein_coding 1302
+# ENSGALT00000074237 protein_coding 1091
+# ENSGALT00000090208 protein_coding 670
+# ENSGALT00000051222 protein_coding 1179
+# ENSGALT00000054080 protein_coding 1498
+# ENSGALT00000089752 protein_coding 434
+# ENSGALT00000085687 protein_coding 991</code></pre></div>
+
+<h4 id="toc_11">5. Get UTR and CDS region of longest transcript of GAPDH</h4>
+
+<div><pre class="line-numbers"><code class="language-python">## Method 1
+ft = chicken_parser.getTransFeature(&quot;ENSGALT00000054080&quot;)
+cds_start, cds_end = ft[&#39;cds_start&#39;], ft[&#39;cds_end&#39;]
+GAPDH = chicken_parser.getTransSeq(&quot;ENSGALT00000054080&quot;)
+
+UTR_5 = GAPDH[:cds_start-1]
+CDS = GAPDH[cds_start-1:cds_end]
+UTR_3 = GAPDH[cds_end:]
+
+## Method 2
+print chicken_parser.showRNAStructure(&quot;ENSGALT00000054080&quot;)</code></pre></div>
+
+<p><img src="img/showRNAStructure.png"></p>
+
+<h4 id="toc_12">6. Get genome coordination of GAPDH start codon</h4>
+
+<div><pre class="line-numbers"><code class="language-python">chrID, chrPos, strand = chicken_parser.transCoor2genomeCoor(&quot;ENSGALT00000054080&quot;, cds_start)
+print chrID, chrPos, strand
+# [&#39;1&#39;, 76953317, &#39;+&#39;]</code></pre></div>
+
+<p>It shows that GAPDH start codon is located at 76953317 of positive strand of chromosome 1</p>
+
+<h4 id="toc_13">7. Find and label all GGAC motifs in GAPDH</h4>
+
+<div><pre class="line-numbers"><code class="language-python">## Get Sequence
+seq = chicken_parser.getTransSeq(&quot;ENSGALT00000054080&quot;)
+
+## Collect motif sites
+locs = []
+start = 0
+while 1:
+    start = seq.find(&quot;GGAC&quot;, start+1)
+    if start == -1: break
+    locs.append(start)
+
+## Label
+for loc in locs:
+    print str(loc)+&quot;\t&quot;+chicken_parser.labelRNAPosition(&quot;ENSGALT00000054080&quot;, [loc,loc])</code></pre></div>
+
+<p><img src="img/labelRNAPosition.png"></p>
+
+<style>
+.hov:hover {
+    background-color: Tomato;
+    color: white;
+    cursor:pointer;
+}
+
+.hov {
+    display:inline-block;
+    border:1px solid black;
+    padding:6px;
+    border-radius:8px;
+    font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono, sans-serif;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+    color: darkblue;
+}
+
+.clearfix:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+</style>
+
+<h2 id="toc_14">Subjects</h2>
+
+<h3 id="toc_15">Init a GAP object</h3>
+
+<blockquote>
+<p>There are two ways to init a GAP object: <br />
+1. Convert the GTF or GFF3 file to a *.genomeCoor.bed file and read it;<br />
+2. Read the GTF or GFF3 directly.</p>
+</blockquote>
+
+<h4 id="toc_16">Method 1 &ndash; Parse GTF/GFF3 file</h4>
+
+<div><pre class="line-numbers"><code class="language-bash">parseGTF.py -g chicken.gtf -o chicken -s ensembl --genome chicken_ensembl.fa</code></pre></div>
+
+<p>The <code>--genome</code> is optional.</p>
+
+<div><pre class="line-numbers"><code class="language-python">import GAP
+chicken_parser = GAP.init(&quot;chicken.genomeCoor.bed&quot;, &quot;chicken_transcriptome.fa&quot;)</code></pre></div>
+
+<h4 id="toc_17">Method 2 &ndash; Read GTF/GFF3 directly</h4>
+
+<div><pre class="line-numbers"><code class="language-python">import GAP
+chicken_parser = GAP.initGTF(&quot;chicken.gtf&quot;, genomeFile=&quot;chicken_ensembl.fa&quot;, source=&#39;Ensembl&#39;)</code></pre></div>
+
+<div class="clearfix">
+<a class="hov" href="#parseGTF">parseGTF.py</a>
+<a class="hov" href="#combineNCBIGenome">combineNCBIGenome.py</a>
+<a class="hov" href="#GAPinit">GAP.init</a>
+<a class="hov" href="#GAPinitGTF">GAP.initGTF</a>
+<a class="hov" href="#addSeq">addSeq</a>
+</div>
+
+<h3 id="toc_18">Get transcript or gene information</h3>
+
+<div class="clearfix">
+<a class="hov" href="#getTransFeature">getTransFeature</a>
+<a class="hov" href="#getGeneParser">getGeneParser</a>
+<a class="hov" href="#getGeneIntron">getGeneIntron</a>
+<a class="hov" href="#getGeneExon">getGeneExon</a>
+<a class="hov" href="#getGeneCombinedIntronExon">getGeneCombinedIntronExon</a>
+</div>
+
+<h3 id="toc_19">Coordinate transformation</h3>
+
+<p><img src="img/coordinate_system.png"></p>
+
+<p><img src="img/coordinate_system2.png"></p>
+
+<div class="clearfix">
+<a class="hov" href="#geneCoor2genomeCoor">geneCoor2genomeCoor</a>
+<a class="hov" href="#genomeCoor2geneCoor">genomeCoor2geneCoor</a>
+<a class="hov" href="#genomeCoor2transCoor">genomeCoor2transCoor</a>
+<a class="hov" href="#transCoor2genomeCoor">transCoor2genomeCoor</a>
+<a class="hov" href="#transCoor2geneCoor">transCoor2geneCoor</a>
+<a class="hov" href="#geneCoor2transCoor">geneCoor2transCoor</a>
+</div>
+
+<h3 id="toc_20">Get transcript list or gene list</h3>
+
+<div class="clearfix">
+<a class="hov" href="#getTransList">getTransList</a>
+<a class="hov" href="#getGeneList">getGeneList</a>
+<a class="hov" href="#getmRNATransList">getmRNATransList</a>
+<a class="hov" href="#getmRNAGeneList">getmRNAGeneList</a>
+<a class="hov" href="#getLenSortedTransDictForGenes">getLenSortedTransDictForGenes</a>
+<a class="hov" href="#getTransByGeneID">getTransByGeneID</a>
+<a class="hov" href="#getGeneByGeneName">getGeneByGeneName</a>
+<a class="hov" href="#getTransByGeneName">getTransByGeneName</a>
+<a class="hov" href="#getTransByGeneType">getTransByGeneType</a>
+</div>
+
+<h3 id="toc_21">Get transcript sequence and mRNA structure</h3>
+
+<div class="clearfix">
+<a class="hov" href="#getTransSeq">getTransSeq</a>
+<a class="hov" href="#showRNAStructure">showRNAStructure</a>
+<a class="hov" href="#labelRNAPosition">labelRNAPosition</a>
+<a class="hov" href="#getRNAPosition">getRNAPosition</a>
+</div>
+
+<h2 id="toc_22">Excutable files</h2>
+
+<h4 id="parseGTF"> <span style="color:DarkGreen;font-family:menlo, sans-serif">parseGTF.py</h4>
+
+<h5 id="toc_23"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Parse GTF/GFF3 file and produce *.genomeCoor.bed, *.transCoor.bed and *_transcriptome.fa files
+</pre>
+
+<h5 id="toc_24"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+-g         genome annotation, Gencode/Ensembl GTF file or NCBI GFF3
+-o         output file prefix
+-s         [ensembl|gencode|ncbi] data source
+
+optional:
+--genome   fetch transcriptome from genome file, produce a prefix_transcriptome.fa file
+</pre>
+
+<h5 id="toc_25"><span style="color:darkred">Output</span></h5>
+
+<pre>
+*.genomeCoor.bed, *.transCoor.bed and *_transcriptome.fa
+</pre>
+
+<h4 id="combineNCBIGenome"> <span style="color:DarkGreen;font-family:menlo, sans-serif">combineNCBIGenome.py</h4>
+
+<h5 id="toc_26"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Combine single chromosomes download from NCBI. Convert the NC_* code to chr* code
+NC_006088.5 => chr1
+</pre>
+
+<h5 id="toc_27"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+./combineNCBIGenome.py chr1.fasta chr2.fasta chr3.fasta... > outFile.fa
+</pre>
+
+<h5 id="toc_28"><span style="color:darkred">Return</span></h5>
+
+<pre>
+A combined genome file with chr* code
+</pre>
+
+<h2 id="toc_29">Functions</h2>
+
+<h4 id="GAPinit"> <span style="color:DarkGreen;font-family:menlo, sans-serif">GAP.init(genomeCoorBedFile, seqFn=&ldquo;&rdquo;, showAttr=True, rem_tVersion=False, rem_gVersion=False)</span> </h4>
+
+<h5 id="toc_30"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Init a GAP object from *.genomeCoor.bed file
+</pre>
+
+<h5 id="toc_31"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+genomeCoorBedFile   -- A *.genomeCoor.bed file produced by parseGTF.py
+seqFn               -- Transcriptome fasta file produced by parseGTF.py
+showAttr            -- Show an example
+rem_tVersion        -- Remove version information. ENST000000022311.2 => ENST000000022311
+rem_gVersion        -- Remove version information. ENSG000000022311.2 => ENSG000000022311
+</pre>
+
+<h5 id="toc_32"><span style="color:darkred">Return</span></h5>
+
+<pre>
+GAP object
+</pre>
+
+<h4 id="GAPinitGTF"> <span style="color:DarkGreen;font-family:menlo, sans-serif">initGTF(AnnotationGTF, source, genomeFile=&ldquo;&rdquo;, showAttr=True, rem_tVersion=False, rem_gVersion=False, verbose=False)</span> </h4>
+
+<h5 id="toc_33"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Init a GAP object from GTF/GFF3 file
+</pre>
+
+<h5 id="toc_34"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+AnnotationGTF       -- Ensembl/Gencode GTF file or NCBI GFF3 file
+genomeFile          -- Genome file
+source              -- Gencode/Ensembl/NCBI
+showAttr            -- Show an example
+rem_tVersion        -- Remove version information. ENST000000022311.2 => ENST000000022311
+rem_gVersion        -- Remove version information. ENSG000000022311.2 => ENSG000000022311
+verbose             -- Show process information
+</pre>
+
+<h5 id="toc_35"><span style="color:darkred">Return</span></h5>
+
+<pre>
+GAP object
+</pre>
+
+<h4 id="addSeq"> <span style="color:DarkGreen;font-family:menlo, sans-serif">addSeq(seqFileName, remove_tid_version=False)</span> </h4>
+
+<h5 id="toc_36"><span style="color:darkred">Features</span></h5>
+
+<pre>
+If the sequence is not provided when init a GAP object, add the sequence to it.
+</pre>
+
+<h5 id="toc_37"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+seqFileName         -- Transcriptome fasta file produced by parseGTF.py
+remove_tid_version  -- Remove version information. ENST000000022311.2 => ENST000000022311
+</pre>
+
+<h5 id="toc_38"><span style="color:darkred">Return</span></h5>
+
+<pre>
+No
+</pre>
+
+<h4 id="getTransFeature"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransFeature(transID, showAttr=False, verbose=True)</span> </h4>
+
+<h5 id="toc_39"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Get transcript features given the transcript id
+</pre>
+
+<h5 id="toc_40"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID             -- Transcript ID
+showAttr            -- Show an example
+verbose             -- Print the warning information when transcript not found
+</pre>
+
+<h5 id="toc_41"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return a dictionary:
+    chr             -- Genome chromosome
+    strand          -- + or -
+    start           -- Genome start
+    end             -- Genome end
+    
+    gene_name       -- Gene symbol
+    gene_id         -- Gene id
+    gene_type       -- Gene type
+    
+    trans_len       -- Transcript length
+    
+    utr_5_start     -- Transcript-based start site of 5'UTR
+    utr_5_end       -- Transcript-based end site of 5'UTR
+    cds_start       -- Transcript-based start site of CDS
+    cds_end         -- Transcript-based end site of CDS
+    utr_3_start     -- Transcript-based start site of 3'UTR
+    utr_3_end       -- Transcript-based end site of 3'UTR
+    
+    exon_str        -- Genome-based exon string
+</pre>
+
+<h4 id="getGeneParser"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneParser(showAttr=True)</span> </h4>
+
+<h5 id="toc_42"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Get gene parser with gene informations
+</pre>
+
+<h5 id="toc_43"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+showAttr            -- Show an example
+</pre>
+
+<h5 id="toc_44"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return a list of dictionaries:
+    { geneID => { ... }, ... } includes
+        chr         -- Genome chromosome
+        strand      -- + or -
+        start       -- Genome start
+        end         -- Genome end
+        
+        gene_name   -- Gene symbol
+        gene_type   -- All transcript types
+        
+        length      -- Gene length (end-start+1)
+        
+        transcript  -- All transcripts belong to this gene
+</pre>
+
+<h4 id="getGeneIntron"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneIntron(geneID)</span> </h4>
+
+<h5 id="toc_45"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Get genome-based intron corrdinates of given gene
+</pre>
+
+<h5 id="toc_46"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID              -- Gene id
+</pre>
+
+<h5 id="toc_47"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Get introns of all transcripts of this gene:
+            { transID => [[intron1_start, intron1_end], [intron2_start, intron2_end], [intron3_start, intron3_end]],... }
+</pre>
+
+<h4 id="getGeneExon"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneExon(geneID)</span> </h4>
+
+<h5 id="toc_48"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Get genome-based exon corrdinates of given gene
+</pre>
+
+<h5 id="toc_49"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID              -- Gene id
+</pre>
+
+<h5 id="toc_50"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Get exons of all transcripts of this gene:
+            { transID => [[exon1_start, exon1_end], [exon2_start, exon2_end], [exon3_start, exon3_end]...],... }
+</pre>
+
+<h4 id="geneCoor2genomeCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">geneCoor2genomeCoor(geneID, pos)</span> </h4>
+
+<h5 id="toc_51"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert gene-based coordinates to genome-based coordinates
+</pre>
+
+<h5 id="toc_52"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID              -- Gene id
+pos                 -- Gene-based position
+</pre>
+
+<h5 id="toc_53"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return: [chrID, chrPos, Strand]
+</pre>
+
+<h4 id="genomeCoor2geneCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">genomeCoor2geneCoor(chrID, start, end, strand)</span> </h4>
+
+<h5 id="toc_54"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert genome-based coordinates to gene-based coordinates
+</pre>
+
+<h5 id="toc_55"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+chrID               -- Chromosome id
+start               -- Chromosome-based start position
+end                 -- Chromosome-based end position
+strand              -- Chromosome strand
+</pre>
+
+<h5 id="toc_56"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return [ [chrID, chrStart, chrEnd, geneID, geneStart, geneEnd], ... ]
+</pre>
+
+<h4 id="genomeCoor2transCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">genomeCoor2transCoor(chrID, start, end, strand)</span> </h4>
+
+<h5 id="toc_57"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert genome-based coordinates to transcript-based coordinates
+</pre>
+
+<h5 id="toc_58"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+chrID               -- Chromosome id
+start               -- Chromosome-based start position
+end                 -- Chromosome-based end position
+strand              -- Chromosome strand
+</pre>
+
+<h5 id="toc_59"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return [ [chrID, chrStart, chrEnd, transID, transStart, transEnd], ... ]
+</pre>
+
+<h4 id="transCoor2genomeCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">transCoor2genomeCoor(transID, pos)</span> </h4>
+
+<h5 id="toc_60"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert transcript-based coordinates to genome-based coordinates
+</pre>
+
+<h5 id="toc_61"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID             -- Transcript id
+pos                 -- Transcript-based position
+</pre>
+
+<h5 id="toc_62"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return [chrID, chrPos, Strand]
+</pre>
+
+<h4 id="geneCoor2transCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">geneCoor2transCoor(geneID, start, end)</span> </h4>
+
+<h5 id="toc_63"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert gene-based coordinates to transcript-based coordinates
+</pre>
+
+<h5 id="toc_64"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID              -- Gene id
+start               -- Gene-based start position
+end                 -- Gene-based end position
+</pre>
+
+<h5 id="toc_65"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return  [chrID, chrStart, chrEnd, transID, transStart, transEnd], ... ]
+</pre>
+
+<h4 id="transCoor2geneCoor"> <span style="color:DarkGreen;font-family:menlo, sans-serif">transCoor2geneCoor(transID, start, end)</span> </h4>
+
+<h5 id="toc_66"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Convert transcript-based coordinates to gene-based coordinates
+</pre>
+
+<h5 id="toc_67"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID             -- Transcript id
+start               -- Transcript-based start position
+end                 -- Transcript-based end position
+</pre>
+
+<h5 id="toc_68"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ [chrID, chrStart, chrEnd, geneID, geneStart, geneEnd], ... ]
+</pre>
+
+<h4 id="getTransList"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransList()</span> </h4>
+
+<h5 id="toc_69"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return list of all transcript id
+</pre>
+
+<h5 id="toc_70"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+No
+</pre>
+
+<h5 id="toc_71"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ transID1, transID2, ... ]
+</pre>
+
+<h4 id="getGeneList"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneList()</span> </h4>
+
+<h5 id="toc_72"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return list of all gene id
+</pre>
+
+<h5 id="toc_73"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+No
+</pre>
+
+<h5 id="toc_74"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ geneID1, geneID2, ... ]
+</pre>
+
+<h4 id="getmRNATransList"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getmRNATransList()</span> </h4>
+
+<h5 id="toc_75"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return list of all mRNA id
+</pre>
+
+<h5 id="toc_76"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+No
+</pre>
+
+<h5 id="toc_77"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ mRNAID1, mRNAID2, ... ]
+</pre>
+
+<h4 id="getmRNAGeneList"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getmRNAGeneList()</span> </h4>
+
+<h5 id="toc_78"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return list of all mRNA gene id
+</pre>
+
+<h5 id="toc_79"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+No
+</pre>
+
+<h5 id="toc_80"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ mRNAGeneID1, mRNAGeneID2, ... ]
+</pre>
+
+<h4 id="getLenSortedTransDictForGenes"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getLenSortedTransDictForGenes(only=[])</span> </h4>
+
+<h5 id="toc_81"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return a dictionary of geneID to sorted transID list
+</pre>
+
+<h5 id="toc_82"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+only                --  Contraint transcript types, such as mRNA, snRNA ...
+</pre>
+
+<h5 id="toc_83"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return { geneID => [ transID1, transID2, ... ], ...}
+transcripts are sorted by length
+</pre>
+
+<h4 id="getTransByGeneID"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransByGeneID(geneID)</span> </h4>
+
+<h5 id="toc_84"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return transcripts belong to specific gene
+</pre>
+
+<h5 id="toc_85"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID              -- Gene id
+</pre>
+
+<h5 id="toc_86"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ transID1, transID2... ]
+</pre>
+
+<h4 id="getGeneByGeneName"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneByGeneName(geneName)</span> </h4>
+
+<h5 id="toc_87"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return gene id with specific gene name
+</pre>
+
+<h5 id="toc_88"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneName            -- Gene symbol
+</pre>
+
+<h5 id="toc_89"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return geneID
+</pre>
+
+<h4 id="getTransByGeneName"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransByGeneName(geneName)</span> </h4>
+
+<h5 id="toc_90"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return transcripts belong to specific gene
+</pre>
+
+<h5 id="toc_91"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneName            -- Gene symbol
+</pre>
+
+<h5 id="toc_92"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ transID1, transID2... ]
+</pre>
+
+<h4 id="getTransByGeneType"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransByGeneType(geneType)</span> </h4>
+
+<h5 id="toc_93"><span style="color:darkred">Features</span></h5>
+
+<pre>
+ Return a list of transcripts belong to specific gene type
+</pre>
+
+<h5 id="toc_94"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneType            -- Gene type
+</pre>
+
+<h5 id="toc_95"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return [ transID1, transID2... ]
+</pre>
+
+<h4 id="getTransSeq"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getTransSeq(transID)</span> </h4>
+
+<h5 id="toc_96"><span style="color:darkred">Features</span></h5>
+
+<pre>
+ Return transcript sequence
+</pre>
+
+<h5 id="toc_97"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID             -- Transcript id
+</pre>
+
+<h5 id="toc_98"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return sequence
+</pre>
+
+<h4 id="getGeneCombinedIntronExon"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getGeneCombinedIntronExon(geneID, verbose=True)</span> </h4>
+
+<h5 id="toc_99"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Parse gene intron/exon regions:
+    1. Combine exons from all transcripts, they are defined as exon regions
+    2. Remove the exon regions from gene regions, they are defined as intron regions
+</pre>
+
+<h5 id="toc_100"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+geneID          -- Gene id
+verbose         -- Print error information when error occured
+</pre>
+
+<h5 id="toc_101"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return: [intron_regions, exon_regions]
+</pre>
+
+<h4 id="showRNAStructure"> <span style="color:DarkGreen;font-family:menlo, sans-serif">showRNAStructure(transID)</span> </h4>
+
+<h5 id="toc_102"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return string of mRNA sequence with color labeled its UTR/CDS/Codons
+</pre>
+
+<h5 id="toc_103"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID         -- Transcript id
+</pre>
+
+<h5 id="toc_104"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return: colored sequence
+</pre>
+
+<h4 id="labelRNAPosition"> <span style="color:DarkGreen;font-family:menlo, sans-serif">labelRNAPosition(transID, region, bn=None, bw=None)</span> </h4>
+
+<h5 id="toc_105"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Return string of mRNA sequence with color labeled its UTR/CDS/Codons
+
+        return RNA structure and label the region
+        -------|||||||||||||||||--------------------------
+         5'UTR        CDS                3'UTR
+</pre>
+
+<h5 id="toc_106"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID         -- Transcript id
+region          -- [start, end]
+bn              -- Bin number (default: 50)
+bw              -- Bin width
+bw and bn cannot be specified at the same time
+</pre>
+
+<h5 id="toc_107"><span style="color:darkred">Return</span></h5>
+
+<pre>
+return: -------|||||||||||||||||--------------------------
+</pre>
+
+<h4 id="getRNAPosition"> <span style="color:DarkGreen;font-family:menlo, sans-serif">getRNAPosition(transID, region)</span> </h4>
+
+<h5 id="toc_108"><span style="color:darkred">Features</span></h5>
+
+<pre>
+Get the position of region located in mRNA
+</pre>
+
+<h5 id="toc_109"><span style="color:darkred">Parameters</span></h5>
+
+<pre>
+transID         -- Transcript id
+region          -- [start, end]
+</pre>
+
+<h5 id="toc_110"><span style="color:darkred">Return</span></h5>
+
+<pre>
+Return any one of:
+    -> not_mRNA
+    -> 5UTR
+    -> span_5UTR_CDS
+    -> CDS
+    -> span_CDS_3UTR
+    -> 3UTR
+    -> span_5UTR_CDS_3UTR
+    -> INVALID
+</pre>
+
+<h2 id="toc_111">Demos</h2>
+
+<h3 id="toc_112">1. Coordinate transformation</h3>
+
+<div><pre class="line-numbers"><code class="language-python">import GAP
+
+hg19_parser = GAP.init(&quot;hg19.genomeCoor.bed&quot;)
+
+hg19_parser.geneCoor2genomeCoor(&quot;ENSG00000227232.5_2&quot;, 10)
+# [&#39;chr1&#39;, 29561, &#39;-&#39;]
+
+hg19_parser.geneCoor2transCoor(&quot;ENSG00000227232.5_2&quot;, 1, 11)
+# [[&#39;chr1&#39;, 29560, 29570, &#39;ENST00000488147.1_1&#39;, 1, 11]]
+
+hg19_parser.transCoor2genomeCoor(&quot;ENST00000456328.2_1&quot;, 1)
+# [&#39;chr1&#39;, 11869, &#39;+&#39;]
+
+hg19_parser.transCoor2geneCoor(&quot;ENST00000456328.2_1&quot;, 1, 11)
+# [[&#39;chr1&#39;, 11869, 11879, &#39;ENSG00000223972.5_2&#39;, 1, 11]]
+
+hg19_parser.genomeCoor2geneCoor(&quot;chr1&quot;, 11869, 11869+10, &#39;+&#39;)
+# [[&#39;chr1&#39;, 11869, 11879, &#39;ENSG00000223972.5_2&#39;, 1, 11]]
+
+hg19_parser.genomeCoor2transCoor(&quot;chr1&quot;, 11869, 11869+10, &#39;+&#39;)
+# [[&#39;chr1&#39;, 11869, 11879, &#39;ENST00000456328.2_1&#39;, 1, 11]]
+
+hg19_parser.genomeCoor2transCoor(&quot;chr14&quot;, 11869, 11869+10, &#39;+&#39;)
+# A chromosome or TransID/GeneID not in genomefile will raise a KeyError
+
+hg19_parser.transCoor2geneCoor(&quot;ENST00000456328.2_1&quot;, 1, 1100000)
+# out of Gene range will raise CoorFunc.out_of_range</code></pre></div>
+
+<h3 id="toc_113">2. Compare CDS/UTR length of Gencode/RefSeq annotation</h3>
+
+<div><pre class="line-numbers"><code class="language-python">import GAP
+
+def statistic_UTR_dist(genomeCoorFile):
+    parser = GAP.init(genomeCoorFile)
+    utr5_len_dict = {}
+    utr3_len_dict = {}
+    cds_len_dict = {}
+    for transID in parser.getmRNATransList():
+        RNA = parser.getTransFeature(transID)
+        
+        cds_start, cds_end = RNA[&#39;cds_start&#39;], RNA[&#39;cds_end&#39;]
+        
+        length = RNA[&#39;trans_len&#39;]
+        
+        utr5_len = cds_start - 1
+        utr3_len = length - cds_end
+        cds_len = cds_end - cds_start + 1
+        
+        gene_name = RNA[&#39;gene_name&#39;]
+        
+        if utr5_len &gt; 0 and utr3_len &gt; 0:
+            utr5_len_dict[gene_name] = utr5_len_dict.get(gene_name, []) + [utr5_len]
+            utr3_len_dict[gene_name] = utr3_len_dict.get(gene_name, []) + [utr3_len]
+            cds_len_dict[gene_name] = cds_len_dict.get(gene_name, []) + [cds_len]
+    
+    return utr5_len_dict, utr3_len_dict, cds_len_dict
+
+hg38_utr5_gencode, hg38_utr3_gencode, hg38_cds_gencode = statistic_UTR_dist(&quot;hg38_gencode.genomeCoor.bed&quot;)
+hg38_utr5_ncbi,    hg38_utr3_ncbi,    hg38_cds_ncbi    = statistic_UTR_dist(&quot;hg38_ncbi.genomeCoor.bed&quot;)
+
+mm10_utr5_gencode, mm10_utr3_gencode, mm10_cds_gencode = statistic_UTR_dist(&quot;mm10_gencode.genomeCoor.bed&quot;)
+mm10_utr5_ncbi,    mm10_utr3_ncbi,    mm10_cds_ncbi    = statistic_UTR_dist(&quot;mm10_ncbi.genomeCoor.bed&quot;)
+
+def plot_single_anno(UTR5_Dict, UTR3_Dict, CDS_Dict):
+    import seaborn as sns
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    
+    dataSet = []
+    for gene_name in UTR5_Dict:
+        dataSet += [ [item, &quot;UTR5&quot;] for item in UTR5_Dict[gene_name] ]
+    
+    for gene_name in UTR3_Dict:
+        dataSet += [ [item, &quot;UTR3&quot;] for item in UTR3_Dict[gene_name] ]
+    
+    for gene_name in CDS_Dict:
+        dataSet += [ [item, &quot;CDS&quot;] for item in CDS_Dict[gene_name] ]
+    
+    dataSet = pd.DataFrame(dataSet, columns=[&#39;length&#39;, &#39;type&#39;])
+    
+    # show some statistics
+    print &quot;median of UTR5: &quot;, dataSet.loc[dataSet.type==&quot;UTR5&quot;, &quot;length&quot;].median()
+    print &quot;median of UTR3: &quot;, dataSet.loc[dataSet.type==&quot;UTR3&quot;, &quot;length&quot;].median()
+    print &quot;median of CDS: &quot;, dataSet.loc[dataSet.type==&quot;CDS&quot;, &quot;length&quot;].median()
+    
+    # plot
+    sns.violinplot(data=dataSet, x=&#39;type&#39;, y=&#39;length&#39;)
+    plt.xlabel(&quot;mRNA Part&quot;, fontsize=&quot;large&quot;)
+    plt.ylabel(&quot;Length Distribution&quot;, fontsize=&quot;large&quot;)
+    plt.ylim(-2000,5000)
+    plt.show()
+
+plot_single_anno(hg38_utr5_gencode, hg38_utr3_gencode, hg38_cds_gencode)
+plot_single_anno(hg38_utr5_ncbi, hg38_utr3_ncbi, hg38_cds_ncbi)
+
+plot_single_anno(mm10_utr5_gencode, mm10_utr3_gencode, mm10_cds_gencode)
+plot_single_anno(mm10_utr5_ncbi, mm10_utr3_ncbi, mm10_cds_ncbi)
+
+def compair_anno(Gencode, RefSeq, title):
+    import numpy as np
+    import seaborn as sns
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    
+    dataSet = []
+    for gene_name in set(Gencode)&amp;set(RefSeq):
+        dataSet.append( [np.median(Gencode[gene_name]), &quot;Gencode&quot;] )
+        dataSet.append( [np.median(RefSeq[gene_name]), &quot;RefSeq&quot;] )
+    
+    dataSet = pd.DataFrame(dataSet, columns=[&#39;length&#39;, &#39;type&#39;])
+    
+    # show some statistics
+    print &quot;median of Gencode: &quot;, dataSet.loc[dataSet.type==&quot;Gencode&quot;, &quot;length&quot;].median()
+    print &quot;median of RefSeq: &quot;, dataSet.loc[dataSet.type==&quot;RefSeq&quot;, &quot;length&quot;].median()
+    
+    # plot
+    sns.violinplot(data=dataSet, x=&#39;type&#39;, y=&#39;length&#39;)
+    plt.xlabel(title, fontsize=&quot;large&quot;)
+    plt.ylabel(&quot;Length Distribution&quot;, fontsize=&quot;large&quot;)
+    plt.ylim(-500,2000)
+    plt.show()
+
+
+compair_anno(hg38_utr5_gencode, hg38_utr5_ncbi, &quot;5UTR&quot;)
+compair_anno(hg38_utr3_gencode, hg38_utr3_ncbi, &quot;3UTR&quot;)
+compair_anno(hg38_cds_gencode,  hg38_cds_ncbi,  &quot;CDS&quot;)</code></pre></div>
+
+<h2 id="toc_114">Authors</h2>
+
+<ul>
+<li><strong>Li Pan</strong> - <em>Programmer</em> - <a href="http://zhanglab.life.tsinghua.edu.cn">Zhanglab</a></li>
+</ul>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.python={"triple-quoted-string":{pattern:/"""[\s\S]+?"""|'''[\s\S]+?'''/,alias:"string"},comment:{pattern:/(^|[^\\])#.*/,lookbehind:!0},string:/("|')(?:\\?.)*?\1/,"function":{pattern:/((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,lookbehind:!0},"class-name":{pattern:/(\bclass\s+)[a-z0-9_]+/i,lookbehind:!0},keyword:/\b(?:as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/,"boolean":/\b(?:True|False)\b/,number:/\b-?(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,operator:/[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not)\b/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+!function(e){var t={variable:[{pattern:/\$?\(\([\w\W]+?\)\)/,inside:{variable:[{pattern:/(^\$\(\([\w\W]+)\)\)/,lookbehind:!0},/^\$\(\(/],number:/\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,operator:/--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,punctuation:/\(\(?|\)\)?|,|;/}},{pattern:/\$\([^)]+\)|`[^`]+`/,inside:{variable:/^\$\(|^`|\)$|`$/}},/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i]};e.languages.bash={shebang:{pattern:/^#!\s*\/bin\/bash|^#!\s*\/bin\/sh/,alias:"important"},comment:{pattern:/(^|[^"{\\])#.*/,lookbehind:!0},string:[{pattern:/((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,lookbehind:!0,inside:t},{pattern:/(["'])(?:\\\\|\\?[^\\])*?\1/g,inside:t}],variable:t.variable,"function":{pattern:/(^|\s|;|\||&)(?:alias|apropos|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|builtin|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|cmp|comm|command|cp|cron|crontab|csplit|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|enable|env|ethtool|eval|exec|expand|expect|export|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|getopts|git|grep|groupadd|groupdel|groupmod|groups|gzip|hash|head|help|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|logout|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|printf|ps|pushd|pv|pwd|quota|quotacheck|quotactl|ram|rar|rcp|read|readarray|readonly|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|sftp|shift|shopt|shutdown|sleep|slocate|sort|source|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tail|tar|tee|test|time|timeout|times|touch|top|traceroute|trap|tr|tsort|tty|type|ulimit|umask|umount|unalias|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zip)(?=$|\s|;|\||&)/,lookbehind:!0},keyword:{pattern:/(^|\s|;|\||&)(?:let|:|\.|if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)(?=$|\s|;|\||&)/,lookbehind:!0},"boolean":{pattern:/(^|\s|;|\||&)(?:true|false)(?=$|\s|;|\||&)/,lookbehind:!0},operator:/&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,punctuation:/\$?\(\(?|\)\)?|\.\.|[{}[\];]/};var a=t.variable[1].inside;a["function"]=e.languages.bash["function"],a.keyword=e.languages.bash.keyword,a.boolean=e.languages.bash.boolean,a.operator=e.languages.bash.operator,a.punctuation=e.languages.bash.punctuation}(Prism);
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/x-mathjax-config">
+(function () {
+
+MathJax.Hub.Config({
+	'showProcessingMessages': false,
+	'messageStyle': 'none'
+});
+
+if (typeof MathJaxListener !== 'undefined') {
+	MathJax.Hub.Register.StartupHook('End', function () {
+		MathJaxListener.invokeCallbackForKey_('End');
+	});
+}
+
+})();
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+</body>
+
+</html>
