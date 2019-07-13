@@ -1,0 +1,234 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+
+
+import sys
+import os
+import re
+
+dirname = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(dirname+'/Functions')
+os.environ['PATH'] += ":"+dirname+'/../GAP'
+import version
+
+Usage = """
+icSHAPE-pipe - Pipeline to calculate icSHAPE score in genome 
+               with sliding window strategy
+=============================================================
+\x1b[1mUSAGE:\x1b[0m 
+  %s [modes] [options...]
+\x1b[1mHELP:\x1b[0m
+    [Prepare]
+    starbuild                   Build STAR index with GTF
+    parseGTF                    Parse GTF file to simple tab-separated file
+    
+    [Fastq-processing]
+    readcollapse                Remove same reads from fastq file
+    trim                        Trim 5' barcode and 3' adaptor
+    cleanFq                     Remove reads map to given gemome (rRNA, mtRNA and tRNA...) from fastq with bowtie2
+    
+    [Mapping and calculate score]
+    mapGenome                   Map to genome with STAR
+    calcFPKM                    Calculate transcript FPKM with cufflinks
+    sam2tab                     Convert sam or bam to a tab-separated file (.tab)
+    trainParameter              Train best window size and substract factors based on known structures (long time..., default parameters are recomended)
+    calcSHAPE                   Calculate SHAPE score with sliding window strategy to 
+                                produce a genome-based tab-separated file (.gtab)
+    calcSHAPENoCont             Calculate SHAPE score with sliding window strategy but no Control samples
+    
+    [Coordination system convert]
+    genSHAPEToTransSHAPE        Convert genome-based SHAPE to transcript-based SHAPE
+    genRTBDToTransRTBD          Convert genome-based RT and BD to transcript-based RT and BD
+    genSHAPEToBedGraph          Convert genome-base SHAPE to bedGraph for visualization
+    
+    [Quanlity control]
+    readDistributionStatistic   Statistic the number of reads are mapped
+    samStatistics               Statistic where the reads mapped to with sam or bam file
+    transSHAPEStatistics        Statistics the RNA distribution of transcript-based SHAPE
+    countRT                     Count RT and BD of each replicates
+    plotGenomeRTRepCor          Plot replicate correlation, base ratio and number of RT
+    plotGenomeSHAPEdist         Plot base ratio and shape distribution
+    evaluateSHAPE               Evaluate icSHAPE with known structure
+
+\x1b[1mVERSION:\x1b[0m
+    %s
+
+\x1b[1mAUTHOR:\x1b[0m
+    Li Pan
+
+""" % (sys.argv[0], version.Version)
+
+def get_find_module():
+    if sys.version_info.major < 3:
+        from imp import find_module
+        return find_module
+    elif sys.version_info.minor < 4:
+        from imp import find_module
+        return find_module
+    else:
+        import importlib
+        find_module = importlib.util.find_spec
+        return find_module
+
+def checkPythonMod(mod):
+    find_module = get_find_module()
+    try:
+        op = find_module(mod)
+        if op:
+            return True
+        else:
+            return False
+    except ImportError:
+        return False
+
+def check_requirements():
+    import distutils.spawn
+        
+    bowtie2 = distutils.spawn.find_executable("bowtie2")
+    STAR = distutils.spawn.find_executable("STAR")
+    cufflinks = distutils.spawn.find_executable("cufflinks")
+    samtools = distutils.spawn.find_executable("samtools")
+    hisat2 = distutils.spawn.find_executable("hisat2")
+    
+    pysam = checkPythonMod("pysam")
+    numpy = checkPythonMod("numpy")
+    pandas = checkPythonMod("pandas")
+    matplotlib = checkPythonMod("matplotlib")
+    seaborn = checkPythonMod("seaborn")
+    sklearn = checkPythonMod("sklearn")
+    
+    if not bowtie2:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> bowtie2 is not in your PATH <===== \x1b[0m\n")
+    if not STAR:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> STAR is not in your PATH <===== \x1b[0m\n")
+    if not cufflinks:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> cufflinks is not in your PATH <===== \x1b[0m\n")
+    if not samtools:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> samtools is not in your PATH <===== \x1b[0m\n")
+    if not hisat2:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> hisat2 is not in your PATH <===== \x1b[0m\n")
+    
+    if not pysam:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> pysam package is not installed <===== \x1b[0m\n")
+    if not numpy:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> numpy package is not installed <===== \x1b[0m\n")
+    if not pandas:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> pandas package is not installed <===== \x1b[0m\n")
+    if not matplotlib:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> matplotlib package is not installed <===== \x1b[0m\n")
+    if not seaborn:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> seaborn package is not installed <===== \x1b[0m\n")
+    if not sklearn:
+        sys.stderr.writelines("\x1b[5;31;40m Warning: =====> sklearn package is not installed <===== \x1b[0m\n")
+
+
+def main():
+    
+    check_requirements()
+    if len(sys.argv) == 1:
+        print(Usage)
+        exit(-1)
+    
+    mode = sys.argv[1]
+    options = " ".join(sys.argv[2:])
+    
+    if mode == 'starbuild':
+        CMD = "python %s/Functions/starbuild.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'parseGTF':
+        CMD = "parseGTF.py "+options
+        os.system(CMD)
+    
+    elif mode == 'readcollapse':
+        CMD = "python %s/Functions/readCollapse.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'trim':
+        CMD = "python %s/Functions/trimFq.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'cleanFq':
+        CMD = "python %s/Functions/cleanFq.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'mapGenome':
+        CMD = "python %s/Functions/mapGenome.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'calcFPKM':
+        CMD = "python %s/Functions/calcFPKM.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'sam2tab':
+        CMD = "%s/Functions/sam2tab " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'trainParameter':
+        CMD = "python %s/Functions/trainParameter.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'calcSHAPE':
+        CMD = "%s/Functions/calc_sliding_shape TrtCont " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'calcSHAPENoCont':
+        CMD = "%s/Functions/calc_sliding_shape Trt " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'genSHAPEToTransSHAPE':
+        CMD = "python %s/Functions/genSHAPEToTransSHAPE.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'genRTBDToTransRTBD':
+        CMD = "python %s/Functions/genRTBDToTransRTBD.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'genSHAPEToBedGraph':
+        CMD = "python %s/Functions/genSHAPEToBedGraph.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'readDistributionStatistic':
+        CMD = "python %s/Functions/readDistributionStatistic.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'samStatistics':
+        CMD = "python %s/Functions/samStatistics.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'transSHAPEStatistics':
+        CMD = "python %s/Functions/transSHAPEStatistics.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'countRT':
+        CMD = "%s/Functions/countRT " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'plotGenomeRTRepCor':
+        CMD = "python %s/Functions/plotGenomeRTRepCor.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'plotGenomeSHAPEdist':
+        CMD = "python %s/Functions/plotGenomeSHAPEdist.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'combine_gTab_SHAPE':
+        CMD = "python %s/Functions/combine_gTab_SHAPE.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'plotGenomeSHAPERepCor':
+        CMD = "python %s/Functions/plotGenomeSHAPERepCor.py " % (dirname, )+options
+        os.system(CMD)
+    
+    elif mode == 'evaluateSHAPE':
+        CMD = "python %s/Functions/evaluateSHAPE.py " % (dirname, )+options
+        os.system(CMD)
+    
+    else:
+        sys.stderr.writelines("Error: unknown mode\n")
+        print(Usage)
+        exit(-1)
+
+if __name__ == "__main__":
+    main()

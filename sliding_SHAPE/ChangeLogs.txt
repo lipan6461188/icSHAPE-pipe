@@ -1,0 +1,6 @@
+
+2018-8-24: Modified the read junction function to validate the junction should not excceed the chromosome length. Because STAR cannot process each junction right
+
+2018-11-2: Mode Changes
+	icSHAPE -> TrtCont
+	smartSHAPE -> Trt

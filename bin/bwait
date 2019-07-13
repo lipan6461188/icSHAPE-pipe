@@ -1,0 +1,49 @@
+#!/bin/env bash
+
+BOLD_s="\x1b[1;39;49m"
+RED_s="\x1b[0;31;107m"
+END="\x1b[0m"
+
+function print_usage()
+{
+    echo -e "${BOLD_s}Usage:${END}"
+    echo -e "    bwait jobid";
+    echo -e "${BOLD_s}Version:${END}"
+    echo -e "    2019-5-24"
+    echo -e "${BOLD_s}Author:${END}"
+    echo -e "    Li Pan (lip16@mails.tsinghua.edu.cn)"
+    echo -e "\n"
+}
+
+if [ $# != 1 ]; then
+    print_usage;
+    exit;
+fi
+
+declare jobID=$1
+
+declare jobstatus=$(bjobs -noheader ${jobID} 2>/dev/null)
+declare nojob=$(echo $jobstatus | grep "is not found")
+declare RUN=$(echo $jobstatus | grep "RUN")
+declare PEND=$(echo $jobstatus | grep "PEND")
+declare DONE=$(echo $jobstatus | grep "DONE")
+
+while true
+do
+    jobstatus=$(bjobs -noheader ${jobID} 2>/dev/null)
+    DONE=$(echo $jobstatus | grep "DONE")
+    if [ "" != "${DONE}" ];
+    then
+        exit 0;
+    fi
+    RUN=$(echo $jobstatus | grep "RUN")
+    PEND=$(echo $jobstatus | grep "PEND")
+    if [ "" == "${RUN}" ] && [ "" == "${PEND}" ]; then
+        exit 0;
+    fi
+
+    sleep 1;
+done
+
+
+

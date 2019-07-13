@@ -1,0 +1,20 @@
+Alanine	Ala	A	aliphatic	nonpolar	neutral	1.8
+Arginine	Arg	R	basic	basic polar	positive	-4.5
+Asparagine	Asn	N	amide	polar	neutral	-3.5
+Aspartic_acid	Asp	D	acid	acidic polar	negative	-3.5
+Cysteine	Cys	C	sulfur-containing	nonpolar	neutral	2.5
+Glutamic_acid	Glu	E	acid	acidic polar	negative	-3.5
+Glutamine	Gln	Q	amide	polar	neutral	-3.5
+Glycine	Gly	G	aliphatic	nonpolar	neutral	-0.4
+Histidine	His	H	basic aromatic	basic polar	positive(10%)neutral(90%)	-3.2
+Isoleucine	Ile	I	aliphatic	nonpolar	neutral	4.5
+Leucine	Leu	L	aliphatic	nonpolar	neutral	3.8
+Lysine	Lys	K	basic	basic polar	positive	-3.9
+Methionine	Met	M	sulfur-containing	nonpolar	neutral	1.9
+Phenylalanine	Phe	F	aromatic	nonpolar	neutral	2.8
+Proline	Pro	P	cyclic	nonpolar	neutral	-1.6
+Serine	Ser	S	hydroxyl-containing	polar	neutral	-0.8
+Threonine	Thr	T	hydroxyl-containing	polar	neutral	-0.7
+Tryptophan	Trp	W	aromatic	nonpolar	neutral	-0.9
+Tyrosine	Tyr	Y	aromatic	polar	neutral	-1.3
+Valine	Val	V	aliphatic	nonpolar	neutral	4.2

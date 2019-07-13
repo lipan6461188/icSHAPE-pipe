@@ -1,0 +1,16 @@
+Requires:
+	1. gcc support c++11
+	2. htslib >= 1.9
+
+
+Difference with GAP 1.0.0:
+	1. Version macro: VERSION => PsBL_LIB_VERSION. defined in pan_type.h
+	2. add htslib part, so htslib is needed (http://www.htslib.org/download/)
+	3. Bam file can be read with htslib.h
+
+2018-11-2: 
+	1. Add ChangeLogs.txt...
+	2. Version macro: VERSION => PsBL_LIB_VERSION
+
+
+

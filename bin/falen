@@ -1,0 +1,26 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+import os,sys
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
+
+if len(sys.argv) < 2:
+    print("Usage: {0} inputfasta.fa > outfile".format(sys.argv[0]))
+    exit(0)
+
+seqID = ""
+seqLen = 0
+for line in open(sys.argv[1], 'r'):
+    if line[0] == '>':
+        if seqLen:
+            sys.stdout.writelines("{}\t{}\n".format(seqID, seqLen))
+        seqID = line[1:].split()[0]
+        seqLen = 0
+    else:
+        seqLen += len(line.strip())
+
+if seqLen:
+    sys.stdout.writelines("{}\t{}\n".format(seqID, seqLen))
+
+
