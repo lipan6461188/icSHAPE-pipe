@@ -206,6 +206,8 @@ def read_A_ChrStrand(IN, gTab_head, minBD):
         
         if BD>=minBD and shape!='-1':
             shape = "%.3f" % (float(shape), )
+        else:
+            shape = "NULL"
         
         if shape == '-1':
             shape = 'NULL'

@@ -145,7 +145,7 @@ def main():
         simplify_fq(params['inFastq'], tmp_file)
         inFq = tmp_file
     
-    CMD = "java -mx256m -jar %s SE -threads %s -phred33 %s %s HEADCROP:%s ILLUMINACLIP:%s:2:30:4 TRAILING:20 MINLEN:%s" % (trimmomatic, params['threads'], inFq, params['outFastq'], params['leading'], params['adator'], params['minLen'])
+    CMD = "java -mx256m -jar %s SE -threads %s -phred33 %s %s HEADCROP:%s ILLUMINACLIP:%s:2:30:4 TRAILING:20 SLIDINGWINDOW:4:15 MINLEN:%s" % (trimmomatic, params['threads'], inFq, params['outFastq'], params['leading'], params['adator'], params['minLen'])
     print("Start to run trimmomatic:\n\t%s" % (CMD, ))
     os.system(CMD)
     if simplified:
