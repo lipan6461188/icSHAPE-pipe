@@ -43,6 +43,7 @@ mapGenome - Map reads to genome with STAR
                             How many threads to use (default: 1)
   --noMut5              <None>
                             Remove reads with mutation at the first base in 5' (such as MD:Z:0A)
+                            The removed reads will not appear in the sorted.bam file
 
 
 \x1b[1mVERSION:\x1b[0m
@@ -169,7 +170,7 @@ def build_hisat2_cmd(params):
 def main():
         
     CMD_sort_1 = "samtools sort -m 2G --threads %s %s -o %s"
-    CMD_sort_2 = "samtools view -h %s | grep -v \"MD:Z:0\"| samtools view --threads %s -bh - | samtools sort -m 2G --threads %s -o %s -"
+    CMD_sort_2 = r"""samtools view -h %s | awk '$0~/^@/{print $0}$0!~/^@/{for(i=12;i<NF;i++){if(substr($i,1,4)=="MD:Z"){if(and(16,$2)==0){ if( $i!~/^MD:Z:0/ ) print $0; }else{ if($i!~/^MD:Z:.*0$/) print $0; }}}}' | samtools view --threads %s -bh - | samtools sort -m 2G --threads %s -o %s -"""
     
     params = init()
     unsorted_bam = params['outPrefix'] + ".unsorted.bam"

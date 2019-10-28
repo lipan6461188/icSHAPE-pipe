@@ -1,2 +1,2 @@
 
-Version = "icSHAPE-pipe 2.0.1"
+Version = "icSHAPE-pipe 2.0.2"
