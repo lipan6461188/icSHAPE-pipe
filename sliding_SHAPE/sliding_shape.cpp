@@ -632,7 +632,7 @@ void sliding_non_junction(  const uIntArray &NAI_RT, const uIntArray &DMSO_RT,
         }
 
         FloatArray scores;
-        for(uLONG i=0; i<chr_size-35; i++)
+        for(uLONG i=0; i<chr_size-30; i++)
         {
             if(use_mask)
                 mask.push_back(chr_mask[i]);
@@ -650,7 +650,7 @@ void sliding_non_junction(  const uIntArray &NAI_RT, const uIntArray &DMSO_RT,
         //for(uLONG i=6; i<chr_size-35; i++)
         //    score[i] = scores[i];
 
-        for(uLONG i=6; i<chr_size-35; i++)
+        for(uLONG i=6; i<chr_size-30; i++)
             if(DMSO_BD[i] < min_cov)
                 score[i] = null;
             else
@@ -1302,7 +1302,7 @@ void sliding_non_junction(  const uIntArray &NAI_RT, const uIntArray &NAI_BD,
         }
 
         FloatArray scores;
-        for(uLONG i=0; i<chr_size-35; i++)
+        for(uLONG i=0; i<chr_size-30; i++)
         {
             if(use_mask)
                 mask.push_back(chr_mask[i]);
@@ -1315,7 +1315,7 @@ void sliding_non_junction(  const uIntArray &NAI_RT, const uIntArray &NAI_BD,
         else
             calculate_score(nai_rt, nai_bd, scores, param);
 
-        for(uLONG i=6; i<chr_size-35; i++)
+        for(uLONG i=6; i<chr_size-30; i++)
             if(NAI_BD[i] < min_cov)
                 score[i] = null;
             else

@@ -43,7 +43,7 @@ void print_usage()
             "faformat - format fasta file(sort, format output, sub-sample)\n"
             "=============================================================\n"
             "\e[1mUSAGE:\e[0m\n"
-            "\tfaformat -in input_fasta -out output_fasta [ -sort len|chr_id -reverse -num 60 -all -sto -append\n"
+            "\tfaformat -in input_fasta -out output(stdout) [ -sort len|chr_id -reverse -num 60 -all -sto -append\n"
             "\t         -remove chr_id_1,chr_id_2... -sample number -fetch chr_id_1,chr_id_2... ]\n"
             "\e[1mHELP:\e[0m\n"
             "\t[order]\n"
@@ -107,7 +107,7 @@ struct Param
 
     operator bool()
     { 
-        if(input_fasta.empty() or output_fasta.empty())
+        if(input_fasta.empty())
             return false;
 
         if( (not remove_list.empty()) + (not fetch_list.empty()) + (sample_num != 0) >= 2 )
@@ -274,7 +274,14 @@ void faformat(const Param &param)
     StringArray chr_ids = fasta.get_chr_ids();
     list<string> chr_ids_list(chr_ids.cbegin(), chr_ids.cend());
 
-    ofstream OUT(param.output_fasta, param.append ? ofstream::app : ofstream::out);
+    //ofstream OUT(param.output_fasta, param.append ? ofstream::app : ofstream::out);
+    ofstream OUT;
+
+    if(!param.output_fasta.empty())
+        OUT.open(param.output_fasta, param.append ? ofstream::app : ofstream::out);
+    else
+        OUT.basic_ios<char>::rdbuf(std::cout.rdbuf());
+
     if(not OUT)
     {
         cerr << "FATAL Error: " << param.output_fasta << " is unwritable" << endl;
