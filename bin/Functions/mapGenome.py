@@ -34,11 +34,10 @@ mapGenome - Map reads to genome with STAR
   --noWithin            <None>
                             Unmapped reads not within the sam file (default: within)
   
-  [option for hisat2]
-  --maxReport           <Int>
-                            Maximum number of alignment reported, may not be unique map when multi-mapped (default: 1)
-
   [option for Both]
+  --maxReport           <Int>
+                            Maximum number of alignment to report (default: 1)
+                            For hisat2: May not be unique map when multi-mapped
   -p                    <Int>
                             How many threads to use (default: 1)
   --noMut5              <None>
@@ -127,7 +126,7 @@ def build_STAR_cmd(params):
         --genomeLoad NoSharedMemory \
         --runMode alignReads \
         --outSAMtype BAM Unsorted \
-        --outSAMmultNmax 1 \
+        --outSAMmultNmax %s \
         --outFilterMultimapNmax %s \
         --outFilterMismatchNmax %s \
         --outFilterIntronMotifs RemoveNoncanonicalUnannotated \
@@ -148,7 +147,7 @@ def build_STAR_cmd(params):
     if params['noWithin']: within = "None"
     else: within = "Within"
     
-    final_cmd = CMD_1 % (params['inFastq'], params['outPrefix'], params['index'], params['threads'], params['maxMMap'], params['maxMisMatch'], params['alignMode'], within) + " > " + unsorted_bam
+    final_cmd = CMD_1 % (params['inFastq'], params['outPrefix'], params['index'], params['threads'], params['maxReport'], params['maxMMap'], params['maxMisMatch'], params['alignMode'], within) + " > " + unsorted_bam
     return final_cmd
 
 def build_hisat2_cmd(params):
