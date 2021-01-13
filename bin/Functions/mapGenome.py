@@ -43,6 +43,8 @@ mapGenome - Map reads to genome with STAR
   --noMut5              <None>
                             Remove reads with mutation at the first base in 5' (such as MD:Z:0A)
                             The removed reads will not appear in the sorted.bam file
+  --moreparams          <String>
+                            More parameters. For example: "--outReadsUnmapped\\ Fastx"
 
 
 \x1b[1mVERSION:\x1b[0m
@@ -56,9 +58,12 @@ mapGenome - Map reads to genome with STAR
 def init():
     import getopt
     
-    Params = { 'inFastq': None, 'outPrefix': None, 'index': None, 'threads': 1, 'maxMMap': 1, 'maxMisMatch': 2, 'noMut5':False, 'alignMode':'EndToEnd', 'noWithin': False, 'tool': 'STAR', 'maxReport':1 }
+    Params = { 'inFastq': None, 'outPrefix': None, 'index': None, 'threads': 1, 
+                'maxMMap': 1, 'maxMisMatch': 2, 'noMut5':False, 'alignMode':'EndToEnd', 
+                'noWithin': False, 'tool': 'STAR', 'maxReport':1, 'moreparams':'' }
     
-    opts, args = getopt.getopt(sys.argv[1:], 'hi:o:x:p:', ['maxMMap=', 'maxMisMatch=', 'noMut5', 'alignMode=', 'noWithin', 'maxReport=', 'tool='])
+    opts, args = getopt.getopt(sys.argv[1:], 'hi:o:x:p:', 
+        ['maxMMap=', 'maxMisMatch=', 'noMut5', 'alignMode=', 'noWithin', 'maxReport=', 'tool=', 'moreparams='])
     
     for op, value in opts:
         if op == '-h':
@@ -94,6 +99,9 @@ def init():
         
         elif op == '--maxReport':
             Params['maxReport'] = int(value)
+
+        elif op == '--moreparams':
+            Params['moreparams'] = value.strip()
         
         else:
             sys.stderr.writelines("parameter Error: unrecognized parameter: "+op+"\n")
@@ -144,6 +152,9 @@ def build_STAR_cmd(params):
     if params['inFastq'].endswith(".gz"): 
         CMD_1  += " --readFilesCommand zcat"
     
+    if params['moreparams']:
+        CMD_1  += " " + params['moreparams']
+    
     if params['noWithin']: within = "None"
     else: within = "Within"
     
@@ -162,7 +173,7 @@ def build_hisat2_cmd(params):
         -x %s \
         --reorder \
         --rna-strandness F \
-        -p %s | samtools view --threads %s -bh -o %s -" % (params['inFastq'], summary_file, params['maxReport'], params['index'], params['threads'], params['threads'], unsorted_bam)
+        -p %s " + params['moreparams'] + " | samtools view --threads %s -bh -o %s -" % (params['inFastq'], summary_file, params['maxReport'], params['index'], params['threads'], params['threads'], unsorted_bam)
     
     return CMD_1
 

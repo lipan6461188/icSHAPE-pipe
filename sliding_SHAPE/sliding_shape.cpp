@@ -1136,14 +1136,17 @@ void calculate_mask_score(const deque<float> &nai_rt, const deque<float> &nai_bd
         }
     }
 
+    /* 2020-04-13
     if(nai_rt_mask.size() < 20)
     {
         scores.assign(nai_rt.size(), null);
         return;
     }
+    */
 
     //FloatArray
-    if(not valid_cov(dmso_bd_mask, nai_rt_mask))
+    // Modify in 2020-04-13
+    if(not valid_cov(dmso_bd_mask, nai_rt_mask, param.min_cov, 0.0))
     {
         scores.assign(nai_rt.size(), null);
         return;
@@ -1154,11 +1157,17 @@ void calculate_mask_score(const deque<float> &nai_rt, const deque<float> &nai_bd
     float dmso_rt_sf = calcScalingFactor(dmso_rt_mask, param);
     float dmso_bd_sf = calcScalingFactor(dmso_bd_mask, param);
 
+    /* 2020-04-13
     if(nai_rt_sf == 0 or nai_bd_sf == 0 or dmso_rt_sf == 0 or dmso_bd_sf == 0)
     {
         scores.assign(nai_rt.size(), null);
         return;
     }
+    */
+    if(nai_rt_sf == 0) nai_rt_sf = 1;
+    if(nai_bd_sf == 0) nai_bd_sf = 1;
+    if(dmso_rt_sf == 0) dmso_rt_sf = 1;
+    if(dmso_bd_sf == 0) dmso_bd_sf = 1;
 
     FloatArray scores_mask;
     calcEnrich(dmso_bd_mask, dmso_rt_mask, nai_bd_mask, nai_rt_mask, dmso_bd_sf, dmso_rt_sf, 
@@ -1196,11 +1205,18 @@ void calculate_score(const deque<float> &nai_rt, const deque<float> &nai_bd,
     float dmso_rt_sf = calcScalingFactor(dmso_rt, param);
     float dmso_bd_sf = calcScalingFactor(dmso_bd, param);
 
+    /*
     if(nai_rt_sf == 0 or nai_bd_sf == 0 or dmso_rt_sf == 0 or dmso_bd_sf == 0)
     {
         scores.assign(nai_rt.size(), null);
         return;
     }
+    */
+
+    if(nai_rt_sf == 0) nai_rt_sf = 1;
+    if(nai_bd_sf == 0) nai_bd_sf = 1;
+    if(dmso_rt_sf == 0) dmso_rt_sf = 1;
+    if(dmso_bd_sf == 0) dmso_bd_sf = 1;
 
     calcEnrich(dmso_bd, dmso_rt, nai_bd, nai_rt, dmso_bd_sf, dmso_rt_sf, 
                 nai_bd_sf, nai_rt_sf, scores, param);
@@ -1775,14 +1791,17 @@ void calculate_mask_score(const deque<float> &nai_rt, const deque<float> &nai_bd
         }
     }
 
+    /* 2020-04-13
     if(nai_rt_mask.size() < 20)
     {
         scores.assign(nai_rt.size(), null);
         return;
     }
+    */
 
     //FloatArray
-    if(not valid_cov(nai_bd_mask, nai_rt_mask))
+    // Modify in 2020-04-13
+    if(not valid_cov(nai_bd_mask, nai_rt_mask, param.min_cov, 0.0))
     {
         scores.assign(nai_rt.size(), null);
         return;

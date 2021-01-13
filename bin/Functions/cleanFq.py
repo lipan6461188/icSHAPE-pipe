@@ -25,6 +25,9 @@ cleanFq - Removed reads mapped to a given genome with bowtie2
                             Mapping the reads to reference with end-to-end mode or local mode (default: Local)
   --sam                 <String>
                             Input a file to save the mapped reads
+  --bowparam            <String>
+                            More parameters for bowtie2
+
 
 \x1b[1mVERSION:\x1b[0m
     %s
@@ -37,9 +40,9 @@ cleanFq - Removed reads mapped to a given genome with bowtie2
 def init():
     import getopt
     
-    Params = { 'inFastq': None, 'outFastq': None, 'mode': "Local", 'index': None, 'threads': 1, 'samFile': '/dev/null' }
+    Params = { 'inFastq': None, 'outFastq': None, 'mode': "Local", 'index': None, 'threads': 1, 'samFile': '/dev/null', 'bow_params':"" }
     
-    opts, args = getopt.getopt(sys.argv[1:], 'hi:o:x:p:', ['mode=', 'sam='])
+    opts, args = getopt.getopt(sys.argv[1:], 'hi:o:x:p:', ['mode=', 'sam=', 'bowparam='])
     
     for op, value in opts:
         if op == '-h':
@@ -59,6 +62,8 @@ def init():
             Params['mode'] = value
         elif op == '--sam':
             Params['samFile'] = os.path.abspath(value)
+        elif op == '--bowparam':
+            Params['bow_params'] = value
         
         else:
             sys.stderr.writelines("parameter Error: unrecognized parameter: "+op+"\n")
@@ -87,8 +92,8 @@ def main():
     else:
         Bowtie_More = "--end-to-end"
     
-    CMD = """bowtie2 %s -U %s -x %s -p %s --reorder | awk '{ if(substr($0,1,1)=="@"||$2==0){print $0 > "%s"}else if($2==4){print "@"$1; print $10; print "+"; print $11;}  }' > %s"""
-    CMD = CMD % (Bowtie_More, params['inFastq'], params['index'], params['threads'], params['samFile'], params['outFastq'])
+    CMD = """bowtie2 %s -U %s -x %s -p %s --reorder %s | awk '{ if(substr($0,1,1)=="@"||$2==0){print $0 > "%s"}else if($2==4){print "@"$1; print $10; print "+"; print $11;}  }' > %s"""
+    CMD = CMD % (Bowtie_More, params['inFastq'], params['index'], params['threads'], params['bow_params'], params['samFile'], params['outFastq'])
     
     print("Start to clean fastq:\n\t%s" % (CMD, ))
     os.system(CMD)

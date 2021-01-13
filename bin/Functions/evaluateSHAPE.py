@@ -11,6 +11,7 @@ import sklearn, sklearn.metrics
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import General, Structure
 
 Usage = """
 evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
@@ -23,7 +24,7 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
   -s                    <String>
                                 Input known structure with dot-bracked format
   -o                    <String>
-                                Output a PDF report (default: report.pdf)
+                                Output a PDF report (default: no output)
 
  More options:
   --accessiblity        <String>
@@ -31,6 +32,16 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
   --min_area            <Float>
                                 Provide minimun area to consider each base (default: 5.0)
                                 Only useful when --accessFn specified
+  
+  --ignore_double_strand        The double-stranded bases are not filtered with acceessibility values
+
+ Accessibility file format
+    18S 1       T       0.0
+    18S 2       A       0.0
+    18S 3       C       0.0
+    18S 4       C       0.0
+    18S 5       T       0.0
+    ....
 
 \x1b[1mWARNING:\x1b[0m
     typical dot-bracked format:
@@ -51,8 +62,9 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
 
 
 def init():
-    params = { 'inSHAPE': None, 'inDotbracket': None, 'outPDF': 'report.pdf', 'step': 0.01, 'accessFn': None, 'minArea': 5.0 }
-    opts, args = getopt.getopt(sys.argv[1:], 'hi:s:o:', ['step=','accessiblity=','min_area='])
+    params = { 'inSHAPE': None, 'inDotbracket': None, 'outPDF': None, 
+    'step': 0.01, 'accessFn': None, 'minArea': 5.0, 'ignore_double_strand': False }
+    opts, args = getopt.getopt(sys.argv[1:], 'hi:s:o:', ['step=','accessiblity=','min_area=', 'ignore_double_strand'])
     for op, value in opts:
         if op == '-h':
             sys.stdout.writelines(Usage+"\n");
@@ -71,6 +83,8 @@ def init():
             params['accessFn'] = os.path.abspath(value)
         elif op == '--min_area':
             params['minArea'] = float(value)
+        elif op == '--ignore_double_strand':
+            params['ignore_double_strand'] = True
         else:
             sys.stderr.writelines("Error: unrecognized parameter: "+op+"\n")
             sys.stdout.writelines(Usage+"\n");
@@ -88,136 +102,129 @@ def init():
     
     return params
 
-
-def Shape_positive_rate(ss_code, shape_list, cutoff):
-    Pos_Num = 0
-    True_Pos = 0
-    False_Pos = 0
-    Neg_Num = 0
-    for idx, code in enumerate(list(ss_code)):
-        if shape_list[idx] != 'NULL':
-            if code != ".":
-                Pos_Num += 1
-                if float(shape_list[idx]) <= cutoff:
-                    True_Pos += 1
-                else:
-                    pass
-            else:
-                Neg_Num += 1
-                if float(shape_list[idx]) <= cutoff:
-                    False_Pos += 1
-                else:
-                    pass
-    return 1.0*True_Pos/Pos_Num, 1.0*False_Pos/Neg_Num
-
-def calc_shape_ROC(ss_code, shape_list, step=0.01):
-    assert(len(ss_code)==len(shape_list))
-    ROC = []
-    cutoff = -step
-    while cutoff < 1.0 + step:
-        TPR, FPR = Shape_positive_rate(ss_code, shape_list, cutoff)
-        ROC.append( (FPR, TPR) )
-        cutoff += step
-    return ROC
-
-def calc_AUC(ROC):
-    x = [it[0] for it in ROC]
-    y = [it[1] for it in ROC]
-    return sklearn.metrics.auc(x, y)
-
-def readDot(inFile):
-    structure = {}
-    IN = open(inFile)
-    line = IN.readline()
-    while line:
-        if line[0] == '>':
-            tid = line[1:].strip().split()[0]
-            seq = IN.readline().strip()
-            ss = IN.readline().strip()
-            structure[tid] = ss
-        line = IN.readline()
-    IN.close()
-    return structure
-
-def readTransSHAPE(file_name):
-    transSHAPE = {}
-    for line in open(file_name):
-        arr = line.strip().split()
-        transSHAPE[ arr[0] ] = arr[3:]
-    return transSHAPE
-
 def readAccessibility(inFn):
+    """
+    The accessibility file format:
+    18S 1       T       0.0
+    18S 2       A       0.0
+    18S 3       C       0.0
+    18S 4       C       0.0
+    18S 5       T       0.0
+    """
     Access = {}
+    Fasta = {}
     for line in open(inFn):
         data = line.strip().split()
+        if len(data)!=4:
+            print("Error: accessibility file format error")
+            exit(-1)
         tid = data[0]
-        access_value = data[1]
-        try:
-            Access[tid].append( 'NULL' if access_value == 'NULL' else float(access_value) )
-        except KeyError:
-            Access[tid] = [ 'NULL' if access_value == 'NULL' else float(access_value) ]
-    return Access
+        pos = int(data[1])
+        base = data[2]
+        value = float(data[3]) if data[3]!='NULL' else 'NULL'
+        if tid not in Access:
+            Access[tid] = []
+            Fasta[tid] = []
+        while pos > len(Access[tid]):
+            Access[tid].append('NULL')
+            Fasta[tid].append('N')
+        Access[tid][pos-1] = value
+        Fasta[tid][pos-1] = base
+    for tid in Fasta:
+        Fasta[tid] = "".join(Fasta[tid]).upper().replace('U', 'T')
+    return Access, Fasta
+
+def filter_seq_shape(shape, dot, params, accessibility=None, aligned_shape_seq=None, aligned_access_seq=None):
+    assert len(shape)==len(dot)
+    if accessibility:
+        assert len(shape)==len(accessibility)
+    if aligned_shape_seq:
+        assert len(shape)==len(aligned_shape_seq)
+    if aligned_access_seq:
+        assert len(shape)==len(aligned_access_seq)
+    new_shape = []
+    new_dot = ""
+    for i in range(len(shape)):
+        if aligned_shape_seq and aligned_shape_seq[i]=='-':
+            continue
+        if aligned_access_seq and aligned_access_seq[i]=='-':
+            continue
+        if accessibility:
+            if accessibility[i] == 'NULL':
+                new_shape.append(shape[i])
+                new_dot += dot[i]
+            elif dot[i]!='.' and params['ignore_double_strand']:
+                new_shape.append(shape[i])
+                new_dot += dot[i]
+            elif accessibility[i]>=params['minArea']:
+                new_shape.append(shape[i])
+                new_dot += dot[i]
+            else:
+                pass
+        else:
+            new_shape.append(shape[i])
+            new_dot += dot[i]
+    return new_shape, new_dot
+
 
 def main():
     params = init()
     
-    dotbracket = readDot(params['inDotbracket'])
-    transSHAPE = readTransSHAPE(params['inSHAPE'])
+    dotbracket = General.load_dot(params['inDotbracket'])
+    transSHAPE = General.load_shape(params['inSHAPE'])
     
     common_tid = list(set(dotbracket) & set(transSHAPE))
     print("Common transcript in structure file and SHAPE file: "+str(common_tid))
     
     Access = {}
+    Access_Fasta = {}
     if params['accessFn']:
-        Access = readAccessibility(params['accessFn'])
+        Access, Access_Fasta = readAccessibility(params['accessFn'])
     
-    ss_combine = ""
-    shape_combine = []
+    total_shape = []
+    total_dot = ""
     for tid in common_tid:
-        ss = dotbracket[tid]
+        dot_seq, dot = dotbracket[tid]
         shape = transSHAPE[tid]
-        if tid in Access:
-            print("Hint: "+tid+" in accessiblity file")
-            access = Access[tid]
-        else:
-            access = [999] * len(ss)
-        if len(shape) != len(ss):
-            sys.stderr.writelines("Error: structure length %s != shape length %s in %s\n" % (len(ss), len(shape), tid))
-            exit(-1)
-        if len(access) != len(ss):
-            sys.stderr.writelines("Error: structure length %s != accessiblity length %s in %s\n" % (len(ss), len(access), tid))
-            exit(-1)
+        assert len(shape)==len(dot), f"structure length {len(dot)} != shape length {len(shape)} in {tid}"
         
-        for ss_unit,shape_unit,access_unit in zip(ss,shape,access):
-            if ss_unit == '.' and access_unit != 'NULL' and access_unit < params['minArea']:
-                continue
-            else:
-                ss_combine += ss_unit
-                shape_combine.append(shape_unit)
+        if tid in Access:
+            access = Access[tid]
+            #assert len(access)==len(dot), f"structure length {len(dot)} != accessiblity length {len(access)} in {tid}"
+            shape_seq = dot_seq.upper().replace('U', 'T')
+            aligned_shape_seq, aligned_access_seq = Structure.multi_alignment([shape_seq, Access_Fasta[tid]])
+            aligned_shape = Structure.shape_to_alignSHAPE(shape, aligned_shape_seq)
+            aligned_access = Structure.shape_to_alignSHAPE(access, aligned_access_seq)
+            aligned_dot = Structure.dot_to_alignDot(dot, aligned_shape_seq)
+            new_shape, new_dot = filter_seq_shape(aligned_shape, aligned_dot, params, accessibility=aligned_access, aligned_shape_seq=aligned_shape_seq, aligned_access_seq=aligned_access_seq)
+        else:
+            new_shape, new_dot = filter_seq_shape(shape, dot, params)
+        
+        unpair_num = new_dot.count('.')
+        pair_num = len(new_dot)-unpair_num
+        AUC = General.calc_AUC_v2(new_dot, new_shape)
+        print(f"{tid} AUC: {AUC:.3}; {pair_num} paired bases {unpair_num} unpaired bases")
+        total_shape += new_shape
+        total_dot += new_dot
     
-    unpair_num = ss_combine.count('.')
-    pair_num = len(ss_combine)-unpair_num
-    print("Final {} paired bases and {} unpaired bases".format(pair_num, unpair_num))
-    #print(ss_combine)
-    #print(shape_combine)
-    ROC = calc_shape_ROC(ss_combine, shape_combine)
-    AUC = calc_AUC(ROC)
-    print("AUC: "+str(round(AUC, 2)))
-    
-    fig = plt.figure(1, figsize=(7, 6))
-    ax = fig.add_subplot(111)
-    
-    x = [ i[0] for i in ROC ]
-    y = [ i[1] for i in ROC ]
-    ax.plot(x, y, '-', color='black')
-    ax.plot([0,1], [0,1], '-', color='gray')
-    ax.set_xlim(0,1)
-    ax.set_ylim(0,1)
-    ax.set_xlabel("False positive rate")
-    ax.set_ylabel("True positive rate")
-    ax.set_title("ROC of " + ",".join(common_tid)+" AUC="+str(round(AUC, 2)))
-    fig.tight_layout()
-    fig.savefig(params['outPDF'])
+    if params['outPDF']:
+        ROC = General.calc_shape_structure_ROC(total_dot, total_shape)
+        AUC = General.calc_AUC_v2(total_dot, total_shape)
+        
+        fig = plt.figure(1, figsize=(7, 6))
+        ax = fig.add_subplot(111)
+        
+        x = [ i[0] for i in ROC ]
+        y = [ i[1] for i in ROC ]
+        ax.plot(x, y, '-', color='black')
+        ax.plot([0,1], [0,1], '-', color='gray')
+        ax.set_xlim(0,1)
+        ax.set_ylim(0,1)
+        ax.set_xlabel("False positive rate")
+        ax.set_ylabel("True positive rate")
+        ax.set_title("ROC of " + ",".join(common_tid)+" AUC="+str(round(AUC, 2)))
+        fig.tight_layout()
+        fig.savefig(params['outPDF'])
 
 if __name__ == '__main__':
     main()
