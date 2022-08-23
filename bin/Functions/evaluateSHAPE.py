@@ -28,6 +28,10 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
                                 Output a PDF report (default: no output)
 
  More options:
+  --shape_min_ratio     <Float>
+                                The minimun percentage of valid (not NULL) bases to leave a transcript
+  --shape_min_count     <Int>
+                                The minimun number of valid (not NULL) bases to leave a transcript
   --accessiblity        <String>
                                 A file provide the acceessibility for each base
   --min_area            <Float>
@@ -64,8 +68,9 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
 
 def init():
     params = { 'inSHAPE': None, 'inDotbracket': None, 'outPDF': None, 
-    'step': 0.01, 'accessFn': None, 'minArea': 5.0, 'ignore_double_strand': False }
-    opts, args = getopt.getopt(sys.argv[1:], 'hi:s:o:', ['step=','accessiblity=','min_area=', 'ignore_double_strand'])
+    'step': 0.01, 'accessFn': None, 'minArea': 5.0, 'ignore_double_strand': False,
+    'shape_min_ratio': 0.01, 'shape_min_count': 10 }
+    opts, args = getopt.getopt(sys.argv[1:], 'hi:s:o:', ['step=','accessiblity=','min_area=', 'ignore_double_strand', 'shape_min_ratio=', 'shape_min_count='])
     for op, value in opts:
         if op == '-h':
             sys.stdout.writelines(Usage+"\n");
@@ -82,6 +87,10 @@ def init():
             assert 0 < params['step'] < 1
         elif op == '--accessiblity':
             params['accessFn'] = os.path.abspath(value)
+        elif op == '--shape_min_ratio':
+            params['shape_min_ratio'] = float(value)
+        elif op == '--shape_min_count':
+            params['shape_min_count'] = int(value)
         elif op == '--min_area':
             params['minArea'] = float(value)
         elif op == '--ignore_double_strand':
@@ -172,7 +181,7 @@ def main():
     params = init()
     
     dotbracket = General.load_dot(params['inDotbracket'])
-    transSHAPE = General.load_shape(params['inSHAPE'], min_ratio=0.1, min_valid_count=10)
+    transSHAPE = General.load_shape(params['inSHAPE'], min_ratio=params['shape_min_ratio'], min_valid_count=params['shape_min_count'])
     
     common_tid = list(set(dotbracket) & set(transSHAPE))
     print("Common transcript in structure file and SHAPE file: "+str(common_tid))
