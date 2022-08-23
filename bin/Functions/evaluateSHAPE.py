@@ -12,6 +12,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import General, Structure
+import Colors
 
 Usage = """
 evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
@@ -31,7 +32,7 @@ evaluateSHAPE - Calculate SHAPE AUC and plot ROC corve with known structure
                                 A file provide the acceessibility for each base
   --min_area            <Float>
                                 Provide minimun area to consider each base (default: 5.0)
-                                Only useful when --accessFn specified
+                                Only useful when --accessiblity specified
   
   --ignore_double_strand        The double-stranded bases are not filtered with acceessibility values
 
@@ -171,7 +172,7 @@ def main():
     params = init()
     
     dotbracket = General.load_dot(params['inDotbracket'])
-    transSHAPE = General.load_shape(params['inSHAPE'])
+    transSHAPE = General.load_shape(params['inSHAPE'], min_ratio=0.1, min_valid_count=10)
     
     common_tid = list(set(dotbracket) & set(transSHAPE))
     print("Common transcript in structure file and SHAPE file: "+str(common_tid))
@@ -198,6 +199,7 @@ def main():
             aligned_dot = Structure.dot_to_alignDot(dot, aligned_shape_seq)
             new_shape, new_dot = filter_seq_shape(aligned_shape, aligned_dot, params, accessibility=aligned_access, aligned_shape_seq=aligned_shape_seq, aligned_access_seq=aligned_access_seq)
         else:
+            print(Colors.f(f"Warning: {tid} not found in accessibility file!", 'yellow'))
             new_shape, new_dot = filter_seq_shape(shape, dot, params)
         
         unpair_num = new_dot.count('.')
